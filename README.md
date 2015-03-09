@@ -10,8 +10,8 @@ connection seems to work too.
 
 ```
 $ ./bnc
-IRC bouncer for a given HOST server.
-Usage: ./bnc HOST [PORT]
+Single-user IRC bouncer (BNC) for a given IRC_HOST server.
+Usage: ./bnc IRC_HOST [IRC_PORT [BNC_HOST [BNC_PORT]]]
 
 $ ./bnc localhost 6667
 Connecting to IRC server on localhost:6667.
