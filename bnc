@@ -41,8 +41,6 @@ client_middleware() {
             "USER")
                 if [[ $connected -ge 2 ]]; then
                     # Skip logging in again.
-                    # Send fake welcome
-                    echo ":irc.example.net 001 bncuser :Welcome back."
                     echo "Skipping welcome: $line" > /dev/stderr
                     continue
                 fi
