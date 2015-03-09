@@ -62,14 +62,14 @@ logger() {
 ##
 
 usage() {
-    echo "IRC bouncer for a given HOST server."
-    echo "Usage: ${0} HOST [PORT]"
+    echo "Single-user IRC bouncer (BNC) for a given IRC_HOST server."
+    echo "Usage: ${0} IRC_HOST [IRC_PORT [BNC_HOST [BNC_PORT]]]"
 }
 
 main() {
     set -eo pipefail; [[ "$TRACE" ]] && set -x
 
-    declare host="$1" port="${2:-6667}"
+    declare host="$1" port="${2:-6667}" bnchost="${3:-localhost}" bncport="${4:-16667}"
     if [[ ! "${host}" ]]; then
         usage
         exit 1
@@ -83,8 +83,8 @@ main() {
     trap "trap - SIGTERM && kill -- -$$" SIGINT SIGTERM EXIT
 
     mkfifo "$workdir/in" "$workdir/out"
-    client "$workdir/in" "$workdir/out" "$workdir/irc.log" "localhost" "16667" &
-    relay "$workdir/out" "$workdir/in" "$workdir/irc.log" "$1" "$2"
+    client "$workdir/in" "$workdir/out" "$workdir/irc.log" "$bnchost" "$bncport" &
+    relay "$workdir/out" "$workdir/in" "$workdir/irc.log" "$host" "$port"
     # TODO: Make sure client loop dies with the relay
     # TODO: Defer opening relay until first client connected?
 }
