@@ -3,8 +3,7 @@
 Single-User IRC bouncer (BNC) written in Bash.
 
 **Status**: It sorta-works for the first connection, as a null bouncer. Second
-connection is broken for now, having trouble spoofing the hostname in the
-welcome message replay.
+connection seems to work too.
 
 
 ## Usage
