@@ -25,13 +25,12 @@ client_middleware() {
     local connected=0
     while read line; do
         # Parse commands, look like this: "COMMAND args..."
-        local command="$(echo $line | cut -d ' ' -f1)"
-        case "$command" in
-            "QUIT")
+        case "$line" in
+            QUIT*)
                 # Discard QUIT messages, because we're not quitters.
                 continue
                 ;;
-            "NICK" | "USER" | "PASS")
+            NICK* | USER* | PASS*)
                 if [[ $connected -ge 2 ]]; then
                     # Skip logging in again.
                     echo "Skipping welcome: $line" > /dev/stderr
