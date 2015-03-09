@@ -16,7 +16,17 @@ Usage: ./bnc HOST [PORT]
 $ ./bnc localhost 6667
 Connecting to IRC server on localhost:6667.
 Listening for IRC clients on localhost:16667.
+
+$ ./bnc irc.freenode.net 6667 localhost 16667
+Connecting to IRC server on irc.freenode.net:6667.
+Listening for IRC clients on localhost:16667.
+[relay]  :irc.freenode.net NOTICE * :*** Looking up your hostname...
+...
 ```
+
+Once the BNC is running, use your favourite IRC client to connect to it (running
+on localhost:16667 by default). **There is zero security built in**, avoid exposing
+your listening port to the public intertubes.
 
 ## Goal
 
